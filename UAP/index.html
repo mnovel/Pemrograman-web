@@ -46,7 +46,7 @@
         </div>
         <div>
             <label for="">Banyaknya Barang</label>
-            <input type="text" id="barang" name="barang" value="1">
+            <input type="text" id="banyak" name="banyak" value="1">
         </div>
         <div>
             <button type="submit">Submit</button>
@@ -78,29 +78,33 @@
             e.preventDefault();
 
             let kode = document.getElementById("kode").value;
-            let barang = document.getElementById("barang").value;
+            let bayar = document.getElementById("banyak").value;
 
             indek = ''
-            data.forEach(function (res, index) {
-                if (res.kode == kode) {
-                    indek = index
 
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].kode == kode) {
+                    indek = i
+                    break
                 }
-            })
-            alert('Total pembayaran adalah: ' + data[indek].harga)
+            }
+          
 
             harga = data[indek].harga.replace('.', '')
-            let bayar = prompt("Masukan uang user: ");
+            harga = harga * bayar
+            alert('Total pembayaran adalah: ' + harga)
+
+            let userBayar = prompt("Masukan uang user: ");
 
 
-            while (bayar == null || bayar == "") {
-                bayar = prompt("Masukan uang user: ");
+            while (userBayar == null || userBayar == "") {
+                userBayar = prompt("Masukan uang user: ");
             }
 
-            if (bayar < harga) {
+            if (userBayar < harga) {
                 alert('uang kurang')
-            } else if ((bayar - harga) != 0) {
-                alert('total kembalian adalah : ' + (bayar - harga))
+            } else if ((userBayar - harga) != 0) {
+                alert('total kembalian adalah : ' + (userBayar - harga))
             }
 
         });
