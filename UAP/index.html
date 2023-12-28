@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="printtable" id="printtable">
+        <table class="table" id="table">
+            <thead>
+                <tr>
+                    <th>Kode</th>
+                    <th>Nama Barang</th>
+                    <th>Harga</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>001</td>
+                    <td>A</td>
+                    <td>10.000</td>
+                </tr>
+                <tr>
+                    <td>002</td>
+                    <td>B</td>
+                    <td>20.000</td>
+                </tr>
+                <tr>
+                    <td>003</td>
+                    <td>C</td>
+                    <td>30000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <br>
+    <br>
+    <form action="" method="POST" name="myForm" id="myForm">
+        <div>
+            <label for="">Masukan Kode</label>
+            <input type="text" id="kode" name="kode" value="001">
+        </div>
+        <div>
+            <label for="">Banyaknya Barang</label>
+            <input type="text" id="barang" name="barang" value="1">
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    <script>
+        var data = [{
+                "kode": "001",
+                "barang": "Barang A",
+                "harga": "10.000",
+            },
+            {
+                "kode": "001",
+                "barang": "Barang B",
+                "harga": "20.000",
+            },
+            {
+                "kode": "001",
+                "barang": "Barang C",
+                "harga": "30.000",
+            }
+        ]
+
+
+
+
+        var loginForm = document.getElementById("myForm")
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let kode = document.getElementById("kode").value;
+            let barang = document.getElementById("barang").value;
+
+            indek = ''
+            data.forEach(function (res, index) {
+                if (res.kode == kode) {
+                    indek = index
+
+                }
+            })
+            alert('Total pembayaran adalah: ' + data[indek].harga)
+
+            harga = data[indek].harga.replace('.', '')
+            let bayar = prompt("Masukan uang user: ");
+
+
+            while (bayar == null || bayar == "") {
+                bayar = prompt("Masukan uang user: ");
+            }
+
+            if (bayar < harga) {
+                alert('uang kurang')
+            } else if ((bayar - harga) != 0) {
+                alert('total kembalian adalah : ' + (bayar - harga))
+            }
+
+        });
+    </script>
+</body>
+
+</html>
